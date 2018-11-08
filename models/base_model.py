@@ -4,6 +4,7 @@
 import uuid
 import datetime
 
+
 class BaseModel:
     """ BaseModel class
     """
@@ -26,7 +27,7 @@ class BaseModel:
         self.updated_at = datetime.datetime.now().isoformat()
 
     def to_dict(self):
-        """ return a dictionary 
+        """ return a dictionary
         """
         ret_dict = {}
         for key, value in self.__dict__.items():
