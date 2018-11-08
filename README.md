@@ -1,5 +1,5 @@
 # 0x00. AirBnB clone - The console
-https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJIMMWEC6CH2PXSCQ%2F20181108%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20181108T140016Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=5e275cc07c7d6313f2a31f72f9ddf0a422e7b143413c0367782f6977fbab714d
+![AirBnB clone](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJIMMWEC6CH2PXSCQ%2F20181108%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20181108T140016Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=5e275cc07c7d6313f2a31f72f9ddf0a422e7b143413c0367782f6977fbab714d)
 
 ## Introduction
 
