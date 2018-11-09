@@ -42,7 +42,6 @@ class BaseModel:
         ret_dict = {}
         for key, value in self.__dict__.items():
             ret_dict[key] = value
-        ret_dict['__class__'] = self.__class__.__name__
         ret_dict['created_at'] = ret_dict['created_at'].isoformat()
         ret_dict['updated_at'] = ret_dict['updated_at'].isoformat()
         return ret_dict
