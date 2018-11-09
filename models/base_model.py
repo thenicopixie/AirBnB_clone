@@ -11,6 +11,9 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """ Initialize attributes
         """
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
         if kwargs is not {}:
             for key, value in kwargs.items():
                 if key == "created_at":
@@ -21,9 +24,6 @@ class BaseModel:
                         value, "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     self.__dict__[key] = value
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
 
     def __str__(self):
         """ make string of object
