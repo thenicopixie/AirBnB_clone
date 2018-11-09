@@ -14,7 +14,7 @@ class BaseModel:
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        if kwargs is not {}:
+        if kwargs != {} and kwargs['__class__'] == self.__class__.__name__:
             for key, value in kwargs.items():
                 if key == "created_at":
                     self.__dict__['created_at'] = datetime.strptime(
@@ -22,7 +22,7 @@ class BaseModel:
                 elif key == "updated_at":
                     self.__dict__['updated_at'] = datetime.strptime(
                         value, "%Y-%m-%dT%H:%M:%S.%f")
-                else:
+                elif key != '__class__':
                     self.__dict__[key] = value
 
     def __str__(self):
