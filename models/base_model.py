@@ -2,18 +2,28 @@
 """ create a BaseModel class
 """
 import uuid
-import datetime
+from datetime import datetime
 
 
 class BaseModel:
     """ BaseModel class
     """
-    def __init__(self, id="", created_at="", updated_at=""):
+    def __init__(self, *args, **kwargs):
         """ Initialize attributes
         """
+        if kwargs is not {}:
+            for key, value in kwargs.items():
+                if key == "created_at":
+                    self.__dict__['created_at'] = datetime.strptime(
+                        value, "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == "updated_at":
+                    self.__dict__['updated_at'] = datetime.strptime(
+                        value, "%Y-%m-%dT%H:%M:%S.%f")
+                else:
+                    self.__dict__[key] = value
         self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def __str__(self):
         """ make string of object
@@ -24,7 +34,7 @@ class BaseModel:
     def save(self):
         """ update the with the current datetime
         """
-        self.updated_at = datetime.datetime.now()
+        self.updated_at = datetime.now()
 
     def to_dict(self):
         """ return a dictionary
