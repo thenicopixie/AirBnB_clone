@@ -3,7 +3,7 @@
 """
 import uuid
 from datetime import datetime
-from .__init__ import storage
+import models
 
 
 class BaseModel:
@@ -18,7 +18,7 @@ class BaseModel:
 	#if new instantce is not in _file storage objects, make new one
         if kwargs == {}:
         #if not hasattr(storage.__object, storage):
-            storage.new(self)
+            models.storage.new(self)
 	#copy a new dictionary of attribute for new instance
         elif kwargs != {} and kwargs['__class__'] == self.__class__.__name__:
             for key, value in kwargs.items():
@@ -42,7 +42,7 @@ class BaseModel:
         """
         self.updated_at = datetime.now()
         #save new objects to File json
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """ return a dictionary
