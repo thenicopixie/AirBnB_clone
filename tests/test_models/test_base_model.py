@@ -4,6 +4,7 @@
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
+from models import storage
 
 
 class TestBase(unittest.TestCase):
@@ -39,6 +40,18 @@ class TestBase(unittest.TestCase):
         self.assertEqual(my_model.id, my_new_model.id)
         self.assertEqual(my_model.__dict__, my_new_model.__dict__)
         self.assertFalse(my_model is my_new_model, True)
+
+    def test_base_01(self):
+        """ Test for empty kwargs and call new function from file_storage
+        """
+        all_objs = storage.all()
+        my_model = BaseModel()
+        for key, value in all_objs.items():
+            string = key.split(".")[1]
+            if string == my_model.id:
+                for k, v in value.items():
+                    if k != "update_at":
+                        self.assertEqual(my_model.to_dict()[k], all_objs[key][k]) 
 
 if __name__ == '__main__':
     unittest.main()
