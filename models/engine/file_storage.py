@@ -22,7 +22,7 @@ class FileStorage:
         """ Sets object with key and value
         """
         obj_key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[obj_key] = obj.to_dict()
+        self.__objects[obj_key] = obj
 
     def save(self):
         """ Serializes __objects to the JSON file
@@ -31,7 +31,7 @@ class FileStorage:
         dic1 = {}
         new_dic = {}
         for k, v in self.__objects.items():
-            new_dic[k] = v
+            new_dic[k] = v.to_dict()
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, 'r') as f:
                 dic1 = json.loads(f.read())
