@@ -6,6 +6,7 @@ import json
 import os.path
 from datetime import datetime
 from models.base_model import BaseModel
+from models.user import User
 
 class FileStorage:
     """ FileStorage class to serializes and deserialize
@@ -44,9 +45,12 @@ class FileStorage:
     def reload(self):
         """ Deserializes the JSON to __objects.
         """
+        class_dict = {'BaseModel': BaseModel, 'User': User}
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, 'r') as f:
                 string = f.read()
-                dic = (json.loads(string))
-                for key, value in dic.items():
-                    self.__objects[key] = BaseModel(**value)
+                if string != "":
+                    dic = (json.loads(string))
+                    for key, value in dic.items():
+                        self.__objects[key] =\
+                            class_dict[value['__class__']](**value)
