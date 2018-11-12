@@ -3,9 +3,11 @@
 """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 import os
 import models
 import json
+
 
 class HBNBCommand(cmd.Cmd):
     """ HBNBCommand class for command interpreter entry point.
@@ -13,7 +15,7 @@ class HBNBCommand(cmd.Cmd):
     intro = "Welcome to the hbnb. Type help to list commands.\n"
     prompt = "(hbnb) "
 
-    class_dict = {'BaseModel': BaseModel}
+    class_dict = {'BaseModel': BaseModel, 'User': User}
 
     def do_quit(self, line):
         """ Returns true when the quit command is called
@@ -57,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
         str_split = string.split()
         name = "file.json"
         check = 0
-        #name = models.engine.file_storage.FileStorage.__file_path
+        # name = models.engine.file_storage.FileStorage.__file_path
         if (len(str_split) == 0):
             print("** class name missing **")
         elif str_split[0] not in HBNBCommand.class_dict.keys():
@@ -101,11 +103,11 @@ class HBNBCommand(cmd.Cmd):
                         if v['id'] == str_split[1]:
                             del dic[k]
                             del models.storage.all()[k]
-                            if dic == {}:
-                                os.remove(name)
-                            else:
-                                string = json.dumps(dic)
-                                f.write(string)
+                            #if dic == {}:
+                            #    os.remove(name)
+                            #else:
+                            string = json.dumps(dic)
+                            f.write(string)
                             check = 1
                             break
             if check == 0:
@@ -129,6 +131,53 @@ class HBNBCommand(cmd.Cmd):
             all_objs = models.storage.all()
             for key in all_objs.keys():
                 print(all_objs[key])
+
+    def do_update(self, string):
+        """ Updates an instance based on the class name and id by adding or
+        updating attribute (save the change into the JSON file)
+        """
+        str_split = string.split()
+        name = "file.json"
+        check = 0
+        dic = {}
+        if (len(str_split) == 0):
+            print("** class name missing **")
+        elif str_split[0] not in HBNBCommand.class_dict.keys():
+            print("** class doesn't exist **")
+        elif (len(str_split) == 1):
+            print("** instance id missing **")
+        elif (len(str_split) == 2):
+            print("** attribute name missing **")
+        elif (len(str_split) == 3):
+            print("** value missing **")
+        else:
+            if os.path.isfile(name):
+                with open(name, 'r') as f:
+                    dic = json.loads(f.read())
+                    for key, value in dic.items():
+                        if value['id'] == str_split[1]:
+                            for k, v in dic[key].items():
+                                if str_split[2] not in\
+                                   ['id', 'created_at', 'updated_at']:
+                                    # update attribute for object and save
+                                    # it in file
+                                    all_objs = models.storage.all()
+                                    setattr(all_objs[key], str_split[2],
+                                            str_split[3])
+                                    dic[key][str_split[2]] = str_split[3]
+                                    check = 1
+                                    break
+                                else:
+                                    check = 2
+                                    print("** cannot update id, created_at or\
+                                    updated_at attribute **")
+                                    break
+            if check == 1:
+                with open(name, 'w') as f:
+                    string = json.dumps(dic)
+                    f.write(string)
+            elif check == 0:
+                print("** no instance found **")
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
