@@ -23,6 +23,14 @@ class TestBase(unittest.TestCase):
         my_model = BaseModel()
         my_model.name = "Holberton"
         my_model.my_number = 89
+        my_model2 = BaseModel()
+        my_model.name = "Betty"
+        my_model.my_number = 98
+
+        """
+        test my_model
+        """
+        self.assertEqual(type(my_model.name), str)
         self.assertEqual(my_model.name, "Holberton")
         self.assertEqual(my_model.my_number, 89)
         self.assertEqual(type(my_model.id), str)
