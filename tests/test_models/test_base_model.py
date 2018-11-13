@@ -23,10 +23,6 @@ class TestBase(unittest.TestCase):
         my_model = BaseModel()
         my_model.name = "Holberton"
         my_model.my_number = 89
-        my_model2 = BaseModel()
-        my_model.name = "Betty"
-        my_model.my_number = 98
-
         """
         test my_model
         """
