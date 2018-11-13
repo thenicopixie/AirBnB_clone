@@ -18,7 +18,7 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """ HBNBCommand class for command interpreter entry point.
     """
-    intro = "Welcome to the hbnb. Type help to list commands.\n"
+    # intro = "Welcome to the hbnb. Type help to list commands.\n"
     prompt = "(hbnb) "
 
     class_dict = {'BaseModel': BaseModel, 'User': User, 'State': State,
@@ -28,12 +28,13 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """ Returns true when the quit command is called
         """
-        return True
+        raise SystemExit
 
     def do_EOF(self, line):
         """ Returns true when EOF command is called
         """
-        return True
+        print("")
+        raise SystemExit
 
     def help_quit(self):
         """ Prints out instructions for quit command
@@ -118,6 +119,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, string):
+        """ show all objects with class name and without class name
+        """
         str_split = shlex.split(string)
         name = "file.json"
         check = 0
