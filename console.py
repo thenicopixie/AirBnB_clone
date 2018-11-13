@@ -4,9 +4,15 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.city import City
+from models.state import State
+from models.amenity import Amenity
+from models.review import Review
+from models.place import Place
 import os
 import models
 import json
+import shlex
 
 
 class HBNBCommand(cmd.Cmd):
@@ -15,7 +21,9 @@ class HBNBCommand(cmd.Cmd):
     intro = "Welcome to the hbnb. Type help to list commands.\n"
     prompt = "(hbnb) "
 
-    class_dict = {'BaseModel': BaseModel, 'User': User}
+    class_dict = {'BaseModel': BaseModel, 'User': User, 'State': State,
+                  'Amenity': Amenity, 'Place': Place, 'City': City,
+                  'Review': Review}
 
     def do_quit(self, line):
         """ Returns true when the quit command is called
@@ -40,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, string):
         """ create a new instance base on valid class
         """
-        str_split = string.split()
+        str_split = shlex.split(string)
         if (len(str_split) == 0):
             print("** class name missing **")
         else:
@@ -56,10 +64,9 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, string):
         """ represent the objects information base on class name and id number
         """
-        str_split = string.split()
+        str_split = shlex.split(string)
         name = "file.json"
         check = 0
-        # name = models.engine.file_storage.FileStorage.__file_path
         if (len(str_split) == 0):
             print("** class name missing **")
         elif str_split[0] not in HBNBCommand.class_dict.keys():
@@ -84,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, string):
         """ delete an instance based on class name and id number
         """
-        str_split = string.split()
+        str_split = shlex.split(string)
         name = "file.json"
         check = 0
         if (len(str_split) == 0):
@@ -103,9 +110,6 @@ class HBNBCommand(cmd.Cmd):
                         if v['id'] == str_split[1]:
                             del dic[k]
                             del models.storage.all()[k]
-                            #if dic == {}:
-                            #    os.remove(name)
-                            #else:
                             string = json.dumps(dic)
                             f.write(string)
                             check = 1
@@ -114,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, string):
-        str_split = string.split()
+        str_split = shlex.split(string)
         name = "file.json"
         check = 0
         if len(str_split) == 1:
@@ -136,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
         """ Updates an instance based on the class name and id by adding or
         updating attribute (save the change into the JSON file)
         """
-        str_split = string.split()
+        str_split = shlex.split(string)
         name = "file.json"
         check = 0
         dic = {}
@@ -159,8 +163,6 @@ class HBNBCommand(cmd.Cmd):
                             for k, v in dic[key].items():
                                 if str_split[2] not in\
                                    ['id', 'created_at', 'updated_at']:
-                                    # update attribute for object and save
-                                    # it in file
                                     all_objs = models.storage.all()
                                     setattr(all_objs[key], str_split[2],
                                             str_split[3])

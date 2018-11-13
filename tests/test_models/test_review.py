@@ -4,13 +4,13 @@
 
 import unittest
 import models
-from models.user import User
+from models.review import Review
 from models.base_model import BaseModel
 import os
 import json
 
 
-class TestUser(unittest.TestCase):
+class TestReview(unittest.TestCase):
     """ Test User class
     """
     def setUp(self):
@@ -24,34 +24,31 @@ class TestUser(unittest.TestCase):
     def test_class_attributes(self):
         """ Test User class attributes """
         check = 0
-        my_user = User()
+        my_review = Review()
         """
         Test keys in User dictionary
         """
-        self.assertTrue(sorted(list(my_user.__dict__.keys())) ==
+        self.assertTrue(sorted(list(my_review.__dict__.keys())) ==
                         ['created_at', 'id', 'updated_at'], True)
         """
         Test for class attributes in User
         """
-        my_user.first_name = "Betty"
-        my_user.last_name = "Holberton"
-        my_user.email = "airbnb@holbertonschool.com"
-        my_user.password = "root"
-        my_user.save()
-        self.assertEqual(my_user.first_name, "Betty")
-        self.assertEqual(my_user.last_name, "Holberton")
-        self.assertEqual(my_user.email, "airbnb@holbertonschool.com")
-        self.assertEqual(my_user.password, "root")
-        self.assertEqual(my_user.__class__.__name__, "User")
+        my_review.place_id = "123asdf678"
+        my_review.user_id = "12sdfasdf"
+        my_review.text = "So terrible"
+        my_review.save()
+        self.assertEqual(my_review.place_id, "123asdf678")
+        self.assertEqual(my_review.user_id, "12sdfasdf")
+        self.assertEqual(my_review.text, "So terrible")
         """
         Test file.json store the object just created
         """
-        if os.path.isfile(TestUser.name):
-            with open(TestUser.name, 'r') as f:
+        if os.path.isfile(TestReview.name):
+            with open(TestReview.name, 'r') as f:
                 string = f.read()
                 dic = json.loads(string)
                 for key, value in dic.items():
-                    if key.split('.')[1] == my_user.id:
+                    if key.split('.')[1] == my_review.id:
                         check = 1
                         break
         self.assertEqual(check, 1)
