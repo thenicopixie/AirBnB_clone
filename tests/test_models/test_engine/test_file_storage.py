@@ -10,6 +10,7 @@ import os.path
 from models.engine.file_storage import FileStorage
 import json
 
+
 class TestFileStorage(unittest.TestCase):
     """ Test case for FileStorage class
     """
@@ -24,11 +25,6 @@ class TestFileStorage(unittest.TestCase):
         """ Test for all method
         """
         all_objs = storage.all()
-       # for obj_id in all_objs.keys():
-            #obj = all_objs[obj_id]
-         #   print("HERE", type(obj))
-        #    self.assertEqual(type(obj), dict)
-            #self.assertEqual(type(obj), type(all_objs[obj]))
         self.assertEqual(type(all_objs), dict)
         """ Test for new method
         """
@@ -51,7 +47,8 @@ class TestFileStorage(unittest.TestCase):
                     if my_model.id == dict_id:
                         for k, v in value.items():
                             if k != 'updated_at':
-                                self.assertEqual(my_model.to_dict()[k], dict1[key][k])
+                                self.assertEqual(my_model.to_dict()[k],
+                                                 dict1[key][k])
 
         """ Test for reload method
         """
