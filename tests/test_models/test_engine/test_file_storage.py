@@ -50,14 +50,5 @@ class TestFileStorage(unittest.TestCase):
                                 self.assertEqual(my_model.to_dict()[k],
                                                  dict1[key][k])
 
-        """ Test for reload method
-        """
-        """ To be continues...
-        self.assertEqual(os.path.isfile('file.json'), True)
-        if os.path.isfile('file.json'):
-            with open('file.json', 'r') as file_name:
-                str2 = file_name.read()
-        """
-
 if __name__ == '__main__':
     unittest.main()
