@@ -13,6 +13,7 @@ from models.place import Place
 from models.city import City
 from models.review import Review
 
+
 class FileStorage:
     """ FileStorage class to serializes and deserialize
     """
@@ -33,7 +34,7 @@ class FileStorage:
     def save(self):
         """ Serializes __objects to the JSON file
         """
-        #deep copy __object to new dict and convert datetime to isoformat
+        # deep copy __object to new dict and convert datetime to isoformat
         dic1 = {}
         new_dic = {}
         for k, v in self.__objects.items():
