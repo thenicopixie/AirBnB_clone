@@ -175,7 +175,7 @@ class HBNBCommand(cmd.Cmd):
                         else:
                             type_name = str
                         setattr(all_objs[key], str_split[2],
-                            type_name(str_split[3]))
+                                type_name(str_split[3]))
                         dic[key][str_split[2]] = type_name(str_split[3])
                         check = 1
                 with open(name, 'w') as f:
