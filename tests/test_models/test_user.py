@@ -55,3 +55,6 @@ class TestUser(unittest.TestCase):
                         check = 1
                         break
         self.assertEqual(check, 1)
+
+if __name__ == '__main__':
+    unittest.main()

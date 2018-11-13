@@ -13,6 +13,13 @@ import json
 class TestFileStorage(unittest.TestCase):
     """ Test case for FileStorage class
     """
+    def setUp(self):
+        """ Set up method """
+
+    def tearDown(self):
+        """ Tear down method """
+        pass
+
     def test_all_new_save_reload(self):
         """ Test for all method
         """
@@ -54,3 +61,6 @@ class TestFileStorage(unittest.TestCase):
             with open('file.json', 'r') as file_name:
                 str2 = file_name.read()
         """
+
+if __name__ == '__main__':
+    unittest.main()

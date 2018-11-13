@@ -10,6 +10,13 @@ from models import storage
 class TestBase(unittest.TestCase):
     """ Test for Base Model
     """
+    def setUp(self):
+        """ Set up method """
+
+    def tearDown(self):
+        """ Tear down method """
+        pass
+
     def test_base_00(self):
         """Test for first instance
         """
@@ -49,9 +56,10 @@ class TestBase(unittest.TestCase):
         for key, value in all_objs.items():
             string = key.split(".")[1]
             if string == my_model.id:
-                for k, v in value.items():
+                for k, v in value.__dict__.items():
                     if k != "update_at":
-                        self.assertEqual(my_model.to_dict()[k], all_objs[key][k]) 
+                        self.assertEqual(my_model.__dict__[k],
+                                         all_objs[key].__dict__[k])
 
 if __name__ == '__main__':
     unittest.main()
