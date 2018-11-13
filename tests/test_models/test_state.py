@@ -13,6 +13,8 @@ import json
 class TestState(unittest.TestCase):
     """ Test User class
     """
+    name = "file.json"
+
     def setUp(self):
         """ Set up method """
 
@@ -20,7 +22,6 @@ class TestState(unittest.TestCase):
         """ Tear down method """
         pass
 
-    name = "file.json"
     def test_class_attributes(self):
         """ Test User class attributes """
         check = 0
