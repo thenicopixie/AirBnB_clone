@@ -124,6 +124,7 @@ class HBNBCommand(cmd.Cmd):
         str_split = shlex.split(string)
         name = "file.json"
         check = 0
+        lis = []
         if len(str_split) == 1:
             if str_split[0] not in HBNBCommand.class_dict.keys():
                 print("** class doesn't exist **")
@@ -133,11 +134,14 @@ class HBNBCommand(cmd.Cmd):
                 all_objs = models.storage.all()
                 for key in all_objs.keys():
                     if key.split('.')[0] == str_split[0]:
-                        print(all_objs[key])
+                        lis += [all_objs[key].__str__()]
         else:
             all_objs = models.storage.all()
             for key in all_objs.keys():
-                print(all_objs[key])
+                lis += [all_objs[key].__str__()]
+        # print lis of string of objects
+        if lis != []:
+            print(lis)
 
     def do_update(self, string):
         """ Updates an instance based on the class name and id by adding or
