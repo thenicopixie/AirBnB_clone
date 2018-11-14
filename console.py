@@ -101,8 +101,6 @@ class HBNBCommand(cmd.Cmd):
         Delete an instance based on class name and id number
         """
         str_split = shlex.split(string)
-        name = "file.json"
-        check = 0
         if (len(str_split) == 0):
             print("** class name missing **")
         elif str_split[0] not in HBNBCommand.class_dict.keys():
@@ -110,21 +108,13 @@ class HBNBCommand(cmd.Cmd):
         elif (len(str_split) == 1):
             print("** instance id missing **")
         else:
-            if os.path.isfile(name):
-                with open(name, 'r') as f:
-                    string = f.read()
-                    dic = json.loads(string)
-                with open(name, 'w') as f:
-                    for k, v in dic.items():
-                        if v['id'] == str_split[1]:
-                            del dic[k]
-                            del models.storage.all()[k]
-                            string = json.dumps(dic)
-                            f.write(string)
-                            check = 1
-                            break
-            if check == 0:
+            all_objs = models.storage.all()
+            key = str_split[0] + "." + str_split[1]
+            if key not in all_objs.keys():
                 print("** no instance found **")
+            else:
+                del all_objs[key]
+            models.storage.save()
 
     def do_all(self, string):
         """
@@ -183,7 +173,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     type_name = str
                 setattr(all_objs[key], str_split[2],
-                    type_name(str_split[3]))
+                        type_name(str_split[3]))
                 models.storage.save()
             else:
                 print("** no instance found **")
@@ -192,11 +182,17 @@ class HBNBCommand(cmd.Cmd):
         """
         Retrieve all instances of a class
         """
+        count = 0
         split_command = args.split('.')
         if len(split_command) >= 2:
             method = split_command[1].split('(')
             if method[0] == 'all':
                 self.do_all(split_command[0])
+            elif method[0] == 'count':
+                for k in models.storage.all().keys():
+                    if split_command[0] == k.split(".")[0]:
+                        count += 1
+                print(count)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
