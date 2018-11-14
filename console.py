@@ -183,6 +183,16 @@ class HBNBCommand(cmd.Cmd):
                 class_id = method[1].split(')')
                 string = str(split_command[0]) + " " + str(class_id[0])
                 self.do_destroy(string)
+            elif method[0] == 'update':
+                to_update = method[1].split(')')
+                elements = to_update[0].split(",")
+                class_id = elements[0]
+                update_key = elements[1]
+                update_value = elements[2]
+                string = str(split_command[0]) + " " + str(
+                             class_id) + " " + str(
+                             update_key) + " " + str(update_value)
+                self.do_update(string)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
