@@ -179,6 +179,10 @@ class HBNBCommand(cmd.Cmd):
                 class_id = method[1].split(')')
                 string = str(split_command[0]) + " " + str(class_id[0])
                 self.do_show(string)
+            elif method[0] == 'destroy':
+                class_id = method[1].split(')')
+                string = str(split_command[0]) + " " + str(class_id[0])
+                self.do_destroy(string)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
