@@ -3,7 +3,7 @@
 """
 
 import unittest
-from models.city import City
+from models.user import User
 import os
 import json
 
