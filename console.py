@@ -139,7 +139,6 @@ class HBNBCommand(cmd.Cmd):
             all_objs = models.storage.all()
             for key in all_objs.keys():
                 lis += [all_objs[key].__str__()]
-        # print lis of string of objects
         if lis != []:
             print(lis)
 
@@ -174,8 +173,8 @@ class HBNBCommand(cmd.Cmd):
                     type_name = type(class_name.__dict__[str_split[2]])
                 else:
                     type_name = str
-                    setattr(all_objs[key], str_split[2],
-                            type_name(str_split[3]))
+                setattr(all_objs[key], str_split[2],
+                    type_name(str_split[3]))
                 models.storage.save()
             else:
                 print("** no instance found **")
