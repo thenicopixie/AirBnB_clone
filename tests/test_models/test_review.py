@@ -4,8 +4,20 @@
 
 import unittest
 from models.review import Review
+from models import storage
 import os
 import json
+
+
+def setUpModule():
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
+    storage._FileStorage__objects.clear()
+
+
+def tearDownModule():
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
 
 
 class TestReview(unittest.TestCase):

@@ -28,8 +28,7 @@ class HBNBCommand(cmd.Cmd):
                   'Review': Review}
 
     def do_quit(self, line):
-        """
-        Returns true when the quit command is called
+        """ Returns true when the quit command is called
         """
         raise SystemExit
 
@@ -40,8 +39,7 @@ class HBNBCommand(cmd.Cmd):
         raise SystemExit
 
     def help_quit(self):
-        """
-        Prints out instructions for quit command
+        """ Prints out instructions for quit command
         """
         print("Quit command to exit the program\n")
 
@@ -52,8 +50,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, string):
-        """
-        Create a new instance base on valid class
+        """ Create a new instance base on valid class
         """
         str_split = shlex.split(string)
         if (len(str_split) == 0):
@@ -69,8 +66,7 @@ class HBNBCommand(cmd.Cmd):
                         print(new_instance.id)
 
     def do_show(self, string):
-        """
-        Represent the objects information base on class name and id number
+        """ Represent the objects information base on class name and id number
         """
         str_split = shlex.split(string)
         name = "file.json"
@@ -90,8 +86,7 @@ class HBNBCommand(cmd.Cmd):
                 print(all_objs[key])
 
     def do_destroy(self, string):
-        """
-        Delete an instance based on class name and id number
+        """ Delete an instance based on class name and id number
         """
         str_split = shlex.split(string)
         if (len(str_split) == 0):
@@ -110,8 +105,7 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
 
     def do_all(self, string):
-        """
-        Show all objects with class name and without class name
+        """ Show all objects with class name and without class name
         """
         str_split = shlex.split(string)
         check = 0
@@ -127,11 +121,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             for key in all_objs.keys():
                 lis += [all_objs[key].__str__()]
-        if lis != []:
-            print(lis)
+        print(lis)
 
     def do_update(self, string):
-        """ Updates an instance based on the class name and id by adding or
+        """ Updates an instance based on the class name and id by adding or\
         updating attribute (save the change into the JSON file)
         """
         str_split = shlex.split(string)

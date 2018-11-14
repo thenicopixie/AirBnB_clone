@@ -5,17 +5,21 @@ import unittest
 from models.base_model import BaseModel
 from datetime import datetime
 from models import storage
+import os
 
+def setUpModule():
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
+    storage._FileStorage__objects.clear()
+
+def tearDownModule():
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
+    storage._FileStorage__objects.clear()
 
 class TestBase(unittest.TestCase):
     """ Test for Base Model
     """
-    def setUp(self):
-        """ Set up method """
-
-    def tearDown(self):
-        """ Tear down method """
-        pass
 
     def test_base_00(self):
         """Test for first instance

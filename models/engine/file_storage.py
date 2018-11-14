@@ -38,11 +38,6 @@ class FileStorage:
         new_dic = {}
         for k, v in self.__objects.items():
             new_dic[k] = v.to_dict()
-        if os.path.isfile(self.__file_path):
-            with open(self.__file_path, 'r') as f:
-                dic1 = json.loads(f.read())
-                for k, v in dic1.items():
-                    new_dic[k] = v
         with open(self.__file_path, 'w') as f:
             string = json.dumps(new_dic)
             f.write(string)
