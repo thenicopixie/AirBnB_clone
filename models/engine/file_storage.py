@@ -4,7 +4,6 @@ and deserialize JSON file to instances
 """
 import json
 import os.path
-from datetime import datetime
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -34,7 +33,6 @@ class FileStorage:
     def save(self):
         """ Serializes __objects to the JSON file
         """
-        # deep copy __object to new dict and convert datetime to isoformat
         dic1 = {}
         new_dic = {}
         for k, v in self.__objects.items():
