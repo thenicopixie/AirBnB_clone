@@ -193,6 +193,10 @@ class HBNBCommand(cmd.Cmd):
                     if split_command[0] == k.split(".")[0]:
                         count += 1
                 print(count)
+            elif method[0] == 'show':
+                class_id = method[1].split(')')
+                string = str(split_command[0]) + " " + str(class_id[0])
+                self.do_show(string)
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
