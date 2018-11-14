@@ -169,15 +169,23 @@ class HBNBCommand(cmd.Cmd):
                     all_objs = models.storage.all()
                     # find the key in all objects dictionary
                     if key in all_objs.keys():
-                        class_name = HBNBCommand.class_dict[str_split[0]]
-                        if str_split[2] in class_name.__dict__.keys():
-                            type_name = type(class_name.__dict__[str_split[2]])
+                        if str_split[2] not in\
+                           ['id', 'created_at', 'updated_at']:
+                            class_name = HBNBCommand.class_dict[str_split[0]]
+                            if str_split[2] in class_name.__dict__.keys():
+                                type_name = type(class_name.
+                                                 __dict__[str_split[2]])
+                            else:
+                                type_name = str
+                            setattr(all_objs[key], str_split[2],
+                                    type_name(str_split[3]))
+                            dic[key][str_split[2]] = type_name(str_split[3])
+                            check = 1
                         else:
-                            type_name = str
-                        setattr(all_objs[key], str_split[2],
-                                type_name(str_split[3]))
-                        dic[key][str_split[2]] = type_name(str_split[3])
-                        check = 1
+                            check = 2
+                            print("** cannot update id, created_at or\
+                                   updated_at attribute **")
+            if check == 1:
                 with open(name, 'w') as f:
                     string = json.dumps(dic)
                     f.write(string)
