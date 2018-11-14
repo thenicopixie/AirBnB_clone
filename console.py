@@ -93,30 +93,20 @@ class HBNBCommand(cmd.Cmd):
         """ delete an instance based on class name and id number
         """
         str_split = shlex.split(string)
-        name = "file.json"
-        check = 0
-        if (len(str_split) == 0):
+        if (len(str_split[0]) == 0):
             print("** class name missing **")
         elif str_split[0] not in HBNBCommand.class_dict.keys():
             print("** class doesn't exist **")
         elif (len(str_split) == 1):
             print("** instance id missing **")
         else:
-            if os.path.isfile(name):
-                with open(name, 'r') as f:
-                    string = f.read()
-                    dic = json.loads(string)
-                with open(name, 'w') as f:
-                    for k, v in dic.items():
-                        if v['id'] == str_split[1]:
-                            del dic[k]
-                            del models.storage.all()[k]
-                            string = json.dumps(dic)
-                            f.write(string)
-                            check = 1
-                            break
-            if check == 0:
+            all_objs = models.storage.all()
+            key = str_split[0] + "." + str_split[1]
+            if key not in all_objs.keys():
                 print("** no instance found **")
+            else:
+                del all_objs[key]
+            models.storage.save()
 
     def do_all(self, string):
         """ show all objects with class name and without class name
@@ -174,7 +164,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     type_name = str
                 setattr(all_objs[key], str_split[2],
-                    type_name(str_split[3]))
+                        type_name(str_split[3]))
                 models.storage.save()
             else:
                 print("** no instance found **")
