@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Entry point of the command interpreter
+"""
+Entry point of the command interpreter
 """
 import cmd
 from models.base_model import BaseModel
@@ -16,7 +17,8 @@ import shlex
 
 
 class HBNBCommand(cmd.Cmd):
-    """ HBNBCommand class for command interpreter entry point.
+    """
+    HBNBCommand class for command interpreter entry point.
     """
     # intro = "Welcome to the hbnb. Type help to list commands.\n"
     prompt = "(hbnb) "
@@ -26,7 +28,8 @@ class HBNBCommand(cmd.Cmd):
                   'Review': Review}
 
     def do_quit(self, line):
-        """ Returns true when the quit command is called
+        """
+        Returns true when the quit command is called
         """
         raise SystemExit
 
@@ -37,17 +40,20 @@ class HBNBCommand(cmd.Cmd):
         raise SystemExit
 
     def help_quit(self):
-        """ Prints out instructions for quit command
+        """
+        Prints out instructions for quit command
         """
         print("Quit command to exit the program\n")
 
     def emptyline(self):
-        """ pass when empty line and ENTER
+        """
+        Pass when empty line and ENTER
         """
         pass
 
     def do_create(self, string):
-        """ create a new instance base on valid class
+        """
+        Create a new instance base on valid class
         """
         str_split = shlex.split(string)
         if (len(str_split) == 0):
@@ -63,7 +69,8 @@ class HBNBCommand(cmd.Cmd):
                         print(new_instance.id)
 
     def do_show(self, string):
-        """ represent the objects information base on class name and id number
+        """
+        Represent the objects information base on class name and id number
         """
         str_split = shlex.split(string)
         name = "file.json"
@@ -90,7 +97,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, string):
-        """ delete an instance based on class name and id number
+        """
+        Delete an instance based on class name and id number
         """
         str_split = shlex.split(string)
         name = "file.json"
@@ -119,7 +127,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, string):
-        """ show all objects with class name and without class name
+        """
+        Show all objects with class name and without class name
         """
         str_split = shlex.split(string)
         name = "file.json"
@@ -178,6 +187,16 @@ class HBNBCommand(cmd.Cmd):
                 models.storage.save()
             else:
                 print("** no instance found **")
+
+    def default(self, args):
+        """
+        Retrieve all instances of a class
+        """
+        split_command = args.split('.')
+        if len(split_command) >= 2:
+            method = split_command[1].split('(')
+            if method[0] == 'all':
+                self.do_all(split_command[0])
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
