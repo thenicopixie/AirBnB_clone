@@ -82,19 +82,12 @@ class HBNBCommand(cmd.Cmd):
         elif (len(str_split) == 1):
             print("** instance id missing **")
         else:
-            if os.path.isfile(name):
-                with open(name, 'r') as f:
-                    dic = json.loads(f.read())
-                    for k, v in dic.items():
-                        if v['id'] == str_split[1]:
-                            all_objs = models.storage.all()
-                            for obj_id in all_objs.keys():
-                                if str_split[1] == obj_id.split('.')[1]:
-                                    print(all_objs[obj_id])
-                                    check = 1
-                                    break
-            if check == 0:
+            all_objs = models.storage.all()
+            key = str_split[0] + "." + str_split[1]
+            if key not in all_objs.keys():
                 print("** no instance found **")
+            else:
+                print(all_objs[key])
 
     def do_destroy(self, string):
         """
@@ -121,21 +114,17 @@ class HBNBCommand(cmd.Cmd):
         Show all objects with class name and without class name
         """
         str_split = shlex.split(string)
-        name = "file.json"
         check = 0
         lis = []
+        all_objs = models.storage.all()
         if len(str_split) == 1:
             if str_split[0] not in HBNBCommand.class_dict.keys():
                 print("** class doesn't exist **")
             else:
-                with open(name, 'r') as f:
-                    dic = json.loads(f.read())
-                all_objs = models.storage.all()
                 for key in all_objs.keys():
                     if key.split('.')[0] == str_split[0]:
                         lis += [all_objs[key].__str__()]
         else:
-            all_objs = models.storage.all()
             for key in all_objs.keys():
                 lis += [all_objs[key].__str__()]
         if lis != []:

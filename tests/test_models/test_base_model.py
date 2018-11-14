@@ -32,7 +32,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(type(my_model.id), str)
         self.assertEqual(type(my_model.created_at), datetime)
         self.assertEqual(type(my_model.updated_at), datetime)
-        self.assertGreater(my_model.updated_at, my_model.created_at)
+        self.assertEqual(my_model.updated_at, my_model.created_at)
         """ Test to_dict function
         """
         my_model_json = my_model.to_dict()

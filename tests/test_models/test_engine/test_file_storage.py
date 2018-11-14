@@ -37,17 +37,17 @@ class TestFileStorage(unittest.TestCase):
         """ Test for save method
         """
         my_model.save()
+        self.assertGreater(my_model.updated_at, my_model.created_at)
         self.assertEqual(os.path.isfile('file.json'), True)
-        if os.path.isfile('file.json'):
-            with open('file.json', 'r') as f:
-                string = f.read()
-                dict1 = json.loads(string)
-                for key, value in dict1.items():
-                    dict_id = key.split('.')[1]
-                    if my_model.id == dict_id:
-                        for k, v in value.items():
-                            if k != 'updated_at':
-                                self.assertEqual(my_model.to_dict()[k],
+        with open('file.json', 'r') as f:
+            string = f.read()
+            dict1 = json.loads(string)
+            for key, value in dict1.items():
+                dict_id = key.split('.')[1]
+                if my_model.id == dict_id:
+                    for k, v in value.items():
+                        if k != 'updated_at':
+                            self.assertEqual(my_model.to_dict()[k],
                                                  dict1[key][k])
 
 if __name__ == '__main__':
