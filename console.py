@@ -118,10 +118,11 @@ class HBNBCommand(cmd.Cmd):
                 for key in all_objs.keys():
                     if key.split('.')[0] == str_split[0]:
                         lis += [all_objs[key].__str__()]
+                print(lis)
         else:
             for key in all_objs.keys():
                 lis += [all_objs[key].__str__()]
-        print(lis)
+            print(lis)
 
     def do_update(self, string):
         """ Updates an instance based on the class name and id by adding or\
