@@ -32,7 +32,6 @@ class TestUser(unittest.TestCase):
     def test_class_attributes(self):
         """ Test User class attributes """
         check = 0
-        print("-- Create a new User --")
         my_user = User()
         """
         Test keys in User dictionary
@@ -52,7 +51,6 @@ class TestUser(unittest.TestCase):
         my_user.email = "airbnb@holbertonschool.com"
         my_user.password = "root"
         my_user.save()
-        print(my_user)
         self.assertEqual(my_user.first_name, "Betty")
         self.assertEqual(my_user.last_name, "Holberton")
         self.assertEqual(my_user.email, "airbnb@holbertonschool.com")
@@ -88,7 +86,6 @@ class TestUser(unittest.TestCase):
             my_user2.first_name = "Hedy"
             my_user2.last_name = "Lamar"
             my_user2.save()
-            print("-- Create a new User 2 --")
             self.assertEqual(my_user2.email, "user@email.com")
             self.assertEqual(my_user2.password, "user2")
             self.assertEqual(my_user2.first_name, "Hedy")
