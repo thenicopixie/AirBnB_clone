@@ -89,6 +89,8 @@ class TestBase(unittest.TestCase):
         dic = new_instance1.to_dict()
         for k, v in dic.items():
             self.assertTrue(type(v), str)
+            if k == '__class__':
+                self.assertEqual(v, 'BaseModel')
         self.assertEqual(sorted(dic.keys()),
                          sorted(['id', '__class__', 'created_at',
                                  'updated_at']))
