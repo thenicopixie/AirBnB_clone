@@ -37,8 +37,8 @@ class TestCity(unittest.TestCase):
         """
         self.assertTrue(sorted(list(my_city.__dict__.keys())) ==
                         ['created_at', 'id', 'updated_at'], True)
-        self.assertTrue(my_city.state_id, "")
-        self.assertTrue(my_city.name, "")
+        self.assertEqual(my_city.state_id, "")
+        self.assertEqual(my_city.name, "")
         """
         Test for class attributes in User
         """
