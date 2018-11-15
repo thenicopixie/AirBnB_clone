@@ -41,6 +41,9 @@ class TestReview(unittest.TestCase):
         """
         Test for class attributes in User
         """
+        self.assertEqual(my_review.place_id, '')
+        self.assertEqual(my_review.user_id, '')
+        self.assertEqual(my_review.text, '')
         my_review.place_id = "123asdf678"
         my_review.user_id = "12sdfasdf"
         my_review.text = "So terrible"
