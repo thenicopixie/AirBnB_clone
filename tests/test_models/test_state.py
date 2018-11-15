@@ -40,6 +40,7 @@ class TestState(unittest.TestCase):
         """
         Test for class attributes in User
         """
+        self.assertEqual(my_state.name, '')
         my_state.name = "California"
         my_state.save()
         self.assertEqual(my_state.name, "California")
