@@ -35,6 +35,7 @@ class TestFileStorage(unittest.TestCase):
         """
         all_objs = storage.all()
         self.assertEqual(type(all_objs), dict)
+        self.assertEqual(all_objs, {})
         """ Test for new method
         """
         my_model = BaseModel()
