@@ -57,6 +57,9 @@ class TestBase(unittest.TestCase):
         self.assertEqual(my_model.id, my_new_model.id)
         self.assertEqual(my_model.__dict__, my_new_model.__dict__)
         self.assertFalse(my_model is my_new_model, True)
+        my_new_model2 = BaseModel(name1="Nico", name2="Jack")
+        self.assertEqual(my_new_model2.name1, "Nico")
+        self.assertEqual(my_new_model2.name2, "Jack")
 
     def test_base_01(self):
         """ Test for empty kwargs and call new function from file_storage
@@ -70,6 +73,25 @@ class TestBase(unittest.TestCase):
                     if k != "update_at":
                         self.assertEqual(my_model.__dict__[k],
                                          all_objs[key].__dict__[k])
+
+    def test_base_02(self):
+        """Test save() method
+        """
+        new_instance = BaseModel()
+        new_instance.save()
+        self.assertGreater(new_instance.updated_at, new_instance.created_at)
+        self.assertTrue(os.path.isfile("file.json"), True)
+
+    def test_base_03(self):
+        """Test to_dict() method
+        """
+        new_instance1 = BaseModel()
+        dic = new_instance1.to_dict()
+        for k, v in dic.items():
+            self.assertTrue(type(v), str)
+        self.assertEqual(sorted(dic.keys()),
+                         sorted(['id', '__class__', 'created_at',
+                                 'updated_at']))
 
 if __name__ == '__main__':
     unittest.main()
