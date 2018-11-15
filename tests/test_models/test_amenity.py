@@ -36,6 +36,7 @@ class TestAmenity(unittest.TestCase):
         """
         self.assertTrue(sorted(list(my_amenity.__dict__.keys())) ==
                         ['created_at', 'id', 'updated_at'], True)
+        self.assertEqual(my_amenity.name, "")
         """
         Test for class attributes in User
         """
