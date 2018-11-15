@@ -3,23 +3,31 @@
 """
 
 import unittest
-import models
 from models.place import Place
+from models import storage
 import os
 import json
+
+
+def setUpModule():
+    """ setup
+    """
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
+    storage._FileStorage__objects.clear()
+
+
+def tearDownModule():
+    """teardown
+    """
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
 
 
 class TestPlace(unittest.TestCase):
     """ Test User class
     """
     name = "file.json"
-
-    def setUp(self):
-        """ Set up method """
-
-    def tearDown(self):
-        """ Tear down method """
-        pass
 
     def test_class_attributes(self):
         """ Test User class attributes """

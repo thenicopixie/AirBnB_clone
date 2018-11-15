@@ -7,6 +7,52 @@ The goal of the project is to deploy on your server a simple copy of the AirBnB 
 
 This is the first step towards building our first full web application: the AirBnB clone. This first step is very important because we will use what we build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration…
 
+## Description of the command interpreter:
+
+### The syntax to run command interpreter:
+
+```
+python3 console.py
+```
+
+### functions can be used and syntax:
+
+- create:  Creates a new instance
+
+```
+create <class name>
+```
+
+- show: Prints the string representation of an instance based on the class name and id
+
+```
+show <class name> <id>
+```
+
+- destroy: Deletes an instance based on the class name and id
+
+```
+destroy <class name> <id>
+```
+
+- all: Prints all string representation of all instances based or not on the class name.
+
+```
+all
+```
+
+or
+
+```
+all <class name>
+```
+
+- update: Updates an instance based on the class name and id by adding or updating attribute
+
+```
+update <class name> <id> <name of attr> <value of attr>
+```
+
 ## Target
 
 - How to create a Python package
