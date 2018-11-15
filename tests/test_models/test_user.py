@@ -19,6 +19,7 @@ def tearDownModule():
     if os.path.isfile("file.json"):
         os.remove("file.json")
 
+
 class TestUser(unittest.TestCase):
     """ Test User class
     """
