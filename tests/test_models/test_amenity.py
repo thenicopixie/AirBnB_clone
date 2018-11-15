@@ -20,7 +20,7 @@ def tearDownModule():
     storage._FileStorage__objects.clear()
 
 
-class TestState(unittest.TestCase):
+class TestAmenity(unittest.TestCase):
     """ Test User class
     """
     def test_class_attributes(self):
@@ -50,5 +50,6 @@ class TestState(unittest.TestCase):
                         check = 1
                         break
         self.assertEqual(check, 1)
+
 if __name__ == '__main__':
     unittest.main()
