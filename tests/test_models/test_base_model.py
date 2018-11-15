@@ -7,15 +7,18 @@ from datetime import datetime
 from models import storage
 import os
 
+
 def setUpModule():
     if os.path.isfile("file.json"):
         os.remove("file.json")
     storage._FileStorage__objects.clear()
 
+
 def tearDownModule():
     if os.path.isfile("file.json"):
         os.remove("file.json")
     storage._FileStorage__objects.clear()
+
 
 class TestBase(unittest.TestCase):
     """ Test for Base Model
