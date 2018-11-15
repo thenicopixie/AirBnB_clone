@@ -19,6 +19,7 @@ def tearDownModule():
         os.remove("file.json")
 
 
+
 class TestBase(unittest.TestCase):
     """ Test for Base Model
     """
