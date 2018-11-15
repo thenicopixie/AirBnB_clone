@@ -93,5 +93,12 @@ class TestBase(unittest.TestCase):
                          sorted(['id', '__class__', 'created_at',
                                  'updated_at']))
 
+    def test_base_04(self):
+        """Test __str__ method
+        """
+        new_instance2 = BaseModel()
+        new_instance2.__str__()
+        self.assertEqual(1, 1)
+
 if __name__ == '__main__':
     unittest.main()
