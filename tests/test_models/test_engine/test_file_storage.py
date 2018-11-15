@@ -11,15 +11,20 @@ from models.engine.file_storage import FileStorage
 import json
 
 
+def setUpModule():
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
+    storage._FileStorage__objects.clear()
+
+
+def tearDownModule():
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
+
+
 class TestFileStorage(unittest.TestCase):
     """ Test case for FileStorage class
     """
-    def setUp(self):
-        """ Set up method """
-
-    def tearDown(self):
-        """ Tear down method """
-        pass
 
     def test_all_new_save_reload(self):
         """ Test for all method
@@ -48,7 +53,7 @@ class TestFileStorage(unittest.TestCase):
                     for k, v in value.items():
                         if k != 'updated_at':
                             self.assertEqual(my_model.to_dict()[k],
-                                                 dict1[key][k])
+                                             dict1[key][k])
 
 if __name__ == '__main__':
     unittest.main()
