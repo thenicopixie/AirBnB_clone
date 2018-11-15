@@ -35,6 +35,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(type(my_model.name), str)
         self.assertEqual(my_model.name, "Holberton")
         self.assertEqual(my_model.my_number, 89)
+        self.assertEqual(type(my_model.my_number), int)
         self.assertEqual(type(my_model.id), str)
         self.assertEqual(type(my_model.created_at), datetime)
         self.assertEqual(type(my_model.updated_at), datetime)
@@ -86,14 +87,17 @@ class TestBase(unittest.TestCase):
         """Test to_dict() method
         """
         new_instance1 = BaseModel()
+        new_instance1.number = 89
         dic = new_instance1.to_dict()
         for k, v in dic.items():
             self.assertTrue(type(v), str)
             if k == '__class__':
                 self.assertEqual(v, 'BaseModel')
+            elif k == 'number':
+                self.assertEqual(type(v), int)
         self.assertEqual(sorted(dic.keys()),
                          sorted(['id', '__class__', 'created_at',
-                                 'updated_at']))
+                                 'updated_at', 'number']))
 
     def test_base_04(self):
         """Test __str__ method
