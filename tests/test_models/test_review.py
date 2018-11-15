@@ -3,24 +3,31 @@
 """
 
 import unittest
-import models
 from models.review import Review
-from models.base_model import BaseModel
+from models import storage
 import os
 import json
+
+
+def setUpModule():
+    """ setup
+    """
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
+    storage._FileStorage__objects.clear()
+
+
+def tearDownModule():
+    """ teardown
+    """
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
 
 
 class TestReview(unittest.TestCase):
     """ Test User class
     """
     name = "file.json"
-
-    def setUp(self):
-        """ Set up method """
-
-    def tearDown(self):
-        """ Tear down method """
-        pass
 
     def test_class_attributes(self):
         """ Test User class attributes """
@@ -34,6 +41,9 @@ class TestReview(unittest.TestCase):
         """
         Test for class attributes in User
         """
+        self.assertEqual(my_review.place_id, '')
+        self.assertEqual(my_review.user_id, '')
+        self.assertEqual(my_review.text, '')
         my_review.place_id = "123asdf678"
         my_review.user_id = "12sdfasdf"
         my_review.text = "So terrible"

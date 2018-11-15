@@ -12,15 +12,7 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """ Initialize attributes
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
-
-        # if new instantce is not in _file storage objects, make new one
-        if kwargs == {}:
-            models.storage.new(self)
-        # copy a new dictionary of attribute for new instance
-        elif kwargs != {} and kwargs['__class__'] == self.__class__.__name__:
+        if kwargs != {}:
             for key, value in kwargs.items():
                 if key == "created_at":
                     self.__dict__['created_at'] = datetime.strptime(
@@ -30,6 +22,11 @@ class BaseModel:
                         value, "%Y-%m-%dT%H:%M:%S.%f")
                 elif key != '__class__':
                     self.__dict__[key] = value
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
+            models.storage.new(self)
 
     def __str__(self):
         """ make string of object
@@ -41,7 +38,6 @@ class BaseModel:
         """ update the with the current datetime
         """
         self.updated_at = datetime.now()
-        # save new objects to File json
         models.storage.save()
 
     def to_dict(self):
