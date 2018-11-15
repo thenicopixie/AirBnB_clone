@@ -39,6 +39,11 @@ class TestUser(unittest.TestCase):
         """
         self.assertTrue(sorted(list(my_user.__dict__.keys())) ==
                         ['created_at', 'id', 'updated_at'], True)
+        self.assertEqual(my_user.email, '')
+        self.assertEqual(my_user.password, '')
+        self.assertEqual(my_user.first_name, '')
+        self.assertEqual(my_user.last_name, '')
+
         """
         Test for class attributes in User
         """
