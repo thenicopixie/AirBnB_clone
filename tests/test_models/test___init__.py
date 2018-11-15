@@ -10,12 +10,16 @@ import os
 
 
 def setUpModule():
+    """ function
+    """
     if os.path.isfile("file.json"):
         os.remove("file.json")
     storage._FileStorage__objects.clear()
 
 
 def tearDownModule():
+    """ function
+    """
     if os.path.isfile("file.json"):
         os.remove("file.json")
 

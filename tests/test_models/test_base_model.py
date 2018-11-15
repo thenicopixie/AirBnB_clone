@@ -9,15 +9,18 @@ import os
 
 
 def setUpModule():
+    """ setup function
+    """
     if os.path.isfile("file.json"):
         os.remove("file.json")
     storage._FileStorage__objects.clear()
 
 
 def tearDownModule():
+    """ tear down function
+    """
     if os.path.isfile("file.json"):
         os.remove("file.json")
-
 
 
 class TestBase(unittest.TestCase):
