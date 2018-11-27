@@ -7,7 +7,3 @@ header {
     background-repeat: no-repeat;
     background-position: left 20px center;
 }
-header .link {
-    align-self: center;
-    line-height: 35px;
-}
