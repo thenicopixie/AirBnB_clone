@@ -62,6 +62,7 @@ article h2 {
     display: inline-block;
     background-repeat: no-repeat;
     background-position: center;
+    background-position-y: 5px;
 }
 
 .max_guest {
