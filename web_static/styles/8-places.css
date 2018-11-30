@@ -5,7 +5,9 @@
 .places h1 {
     font-size: 30px;
     text-align: left;
-    padding-left: 20px;
+    padding-left: 16px;
+    padding-top: 5px;
+    margin-bottom: 10px;
 }
 .place_list {
     display: flex;
@@ -26,6 +28,9 @@ article {
 article h2 {
     font-size: 30px;
     display: inline-block;
+    margin-left: 90px;
+    margin-top: 5px;
+    margin-bottom: 32px;
 }
 
 .price_by_night {
@@ -38,6 +43,7 @@ article h2 {
     font-size: 30px;
     float: right;
     line-height: 60px;
+    margin-top: -10px;
 }
 
 .information {
@@ -48,7 +54,7 @@ article h2 {
     justify-content: space-evenly;
 }
 .information p  {
-    padding-top: 38px;
+    padding-top: 35px;
 }
 
 .max_guest,
@@ -58,6 +64,7 @@ article h2 {
     display: inline-block;
     background-repeat: no-repeat;
     background-position: center;
+    background-position-y: 5px;
 }
 
 .max_guest {
@@ -74,7 +81,8 @@ article h2 {
 
 .user p {
     text-align: left;
-    padding-top: 20px;
+    padding-top: 0px;
+    margin-bottom: 0px;
 }
 
 .description {
