@@ -20,6 +20,10 @@ button {
     top: 11px;
 }
 
+button:hover {
+    opacity: .9;
+}
+
 .locations, .amenities {
     height: 100%;
     width: 25%;
@@ -35,7 +39,6 @@ button {
 
 .locations > h3, .amenities > h3 {
     font-weight: 600;
-    
 }
 
 .locations > h4, .amenities > h4 {
