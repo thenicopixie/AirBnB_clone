@@ -20,6 +20,10 @@ button {
     top: 11px;
 }
 
+button:hover {
+    opacity: .9;
+}
+
 .filters .locations, .filters .amenities {
     height: 100%;
     width: 25%;
