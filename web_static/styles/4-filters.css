@@ -19,3 +19,7 @@ button {
     right: 30px;
     top: 10px;
 }
+
+button:hover {
+    opacity: .9;
+}
