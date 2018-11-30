@@ -48,8 +48,6 @@ article h2 {
     height: 80px;
     border-top: 1px solid #DDDDDD;
     border-bottom: 1px solid #DDDDDD;
-    display: flex;
-    justify-content: space-evenly;
 }
 .information p  {
     padding-top: 38px;
